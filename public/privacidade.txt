@@ -1,0 +1,9 @@
+RADAR DE PERFUMES — PRIVACIDADE E MEDIÇÃO PUBLICITÁRIA
+
+Quando permitido, usamos o Meta Pixel 1104208202495234 para medir visitas (PageView) e cliques no grupo disponível do WhatsApp (Lead), e apoiar a otimização de anúncios no Facebook e Instagram. Esses eventos podem compartilhar com a Meta o endereço da página, informações do navegador/dispositivo e rede e identificadores publicitários/cookies gerados pelo Pixel. Não enviamos dados de formulário, email ou listas de clientes nem usamos correspondência avançada.
+
+Sem aviso de consentimento, o Pixel fica bloqueado nas regiões configuradas que exigem consentimento, incluindo Brasil, Espaço Econômico Europeu, Reino Unido e Suíça, e quando a região não é identificada. Os eventos bloqueados não são reenviados posteriormente. Cliques e impressões medidos pelos próprios anúncios não dependem desse Pixel.
+
+O sinal Global Privacy Control (GPC) do navegador impede a medição. Para retirar a permissão nos locais onde a medição esteja ativa, ative GPC nas configurações de privacidade do navegador e recarregue a página. O acesso ao grupo permanece disponível sem medição. O botão LOTADO não permite acesso nem gera Lead.
+
+Uma referência local do clique é guardada no navegador para evitar Leads repetidos; isso não confirma recebimento pela Meta nem participação no grupo. Consulte também a Política de Privacidade da Meta: https://www.facebook.com/privacy/policy/ e os Termos das Ferramentas para Empresas: https://www.facebook.com/legal/technology_terms.

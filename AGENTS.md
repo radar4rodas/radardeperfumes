@@ -11,3 +11,4 @@
 
 - Keep WhatsApp group actions in the shared GroupButtons component using the design-system Button; only the available group links out and dispatches the existing deduplicated Meta Lead event, while the full group is a native disabled button.
 - Integrate the original perfume asset through CSS edge masks rather than altering or replacing the uploaded image, preserving product detail.
+- Keep Pixel initialization and regional permission in src/lib/meta-pixel.ts, sharing the live permission gate with Lead; a single shell install prevents duplicate PageViews and blocks disallowed transmissions without changing the landing page.
