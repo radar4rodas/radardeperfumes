@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { PIXEL_ID, PIXEL_SNIPPET, permitsAdvertising } from "@/lib/meta-pixel";
+vi.mock("@/lib/metrics", () => ({ countMetric: vi.fn() }));
 
 describe("Radar Pixel rules", () => {
   beforeEach(() => { vi.resetModules(); localStorage.clear(); });

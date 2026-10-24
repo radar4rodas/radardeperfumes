@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { WHATSAPP_GROUP_URL, trackLeadOnce } from "@/lib/meta-lead";
+import { countMetric } from "@/lib/metrics";
 
 function WhatsAppIcon() {
   return (
@@ -15,7 +16,7 @@ export function GroupButtons() {
       <div className="relative w-full pt-2">
         <span className="group-badge group-badge-available absolute left-1/2 top-0 -translate-x-1/2">VAGAS DISPONÍVEIS</span>
         <Button asChild variant="ghost" className="cta-whatsapp h-auto min-h-20 w-full gap-3 whitespace-normal rounded-xl px-4 py-5 text-sm font-bold hover:bg-transparent [&_svg]:size-7">
-          <a href={WHATSAPP_GROUP_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackLeadOnce()}>
+          <a href={WHATSAPP_GROUP_URL} target="_blank" rel="noopener noreferrer" onClick={() => { countMetric("whatsapp_click"); trackLeadOnce(); }}>
             <WhatsAppIcon />
             <span>ENTRAR NO GRUPO COM VAGAS</span>
           </a>

@@ -11,3 +11,4 @@
 - [ ] Publish and verify Meta receipt — requires publication approval and Meta Events Manager access; browser checks observed no outgoing event beacons.
 - [x] Lead: trackSingle no Pixel 1104208202495234, sem bloqueio permanente
 - [x] Medição no Brasil: faixa de consentimento mínima (Aceitar/Recusar) + página /privacidade
+- [x] Medição sem cookies + relatório /relatorio

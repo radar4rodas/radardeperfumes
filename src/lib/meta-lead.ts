@@ -1,4 +1,5 @@
 import { PIXEL_ID, advertisingPermittedNow } from "./meta-pixel";
+import { countMetric } from "./metrics";
 export { PIXEL_ID } from "./meta-pixel";
 export const WHATSAPP_GROUP_URL = "https://chat.whatsapp.com/GcNVB35EeMFGNIf8VlYAQV";
 
@@ -30,6 +31,7 @@ export function trackLeadOnce(): void {
       { content_name: "Grupo VIP - Perfumes Masculinos", content_category: "Perfumes" },
       { eventID: newId() },
     );
+    countMetric("meta_lead");
   } catch {
     /* tracking must never block access */
   }

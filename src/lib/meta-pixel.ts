@@ -87,6 +87,7 @@ n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','${PIXEL_ID}',{},{agent:'lovable'});fbq('track','PageView');
+window.__radarMetaPvPending=true;window.dispatchEvent(new Event('radar:meta-pageview'));
 };
 function needConsent(){window.__radarNeedsConsent=true;window.dispatchEvent(new Event('${CONSENT_EVENT}'));}
 var regions=${JSON.stringify([...CONSENT_REGIONS, "XX", "T1"])};
