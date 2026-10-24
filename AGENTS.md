@@ -9,6 +9,6 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Keep WhatsApp group actions in the shared GroupButtons component using the design-system Button; only the available group links out and dispatches the existing deduplicated Meta Lead event, while the full group is a native disabled button.
+- Keep WhatsApp group actions in the shared GroupButtons component using the design-system Button; only the available group links out and dispatches the existing Meta Lead event (trackSingle, double-click guard only), while the full group is a native disabled button.
 - Integrate the original perfume asset through CSS edge masks rather than altering or replacing the uploaded image, preserving product detail.
-- Keep Pixel initialization and regional permission in src/lib/meta-pixel.ts, sharing the live permission gate with Lead; a single shell install prevents duplicate PageViews and blocks disallowed transmissions without changing the landing page.
+- Keep Pixel loading, regional consent and choice storage in src/lib/meta-pixel.ts (single shell install, shared gate with Lead); the ConsentBar in __root only appears in consent regions and loads the Pixel solely after Aceitar.

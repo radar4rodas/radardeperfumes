@@ -10,4 +10,4 @@
 - [x] Test new Pixel, single PageView, deduplicated Lead and disabled group (six tests and browser checks passed).
 - [ ] Publish and verify Meta receipt — requires publication approval and Meta Events Manager access; browser checks observed no outgoing event beacons.
 - [x] Lead: trackSingle no Pixel 1104208202495234, sem bloqueio permanente
-- [ ] Medição no Brasil: aguardando decisão de consentimento do dono (sem aviso = bloqueado)
+- [x] Medição no Brasil: faixa de consentimento mínima (Aceitar/Recusar) + página /privacidade
