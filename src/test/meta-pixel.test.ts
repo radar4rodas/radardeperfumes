@@ -20,27 +20,28 @@ describe("Radar Pixel rules", () => {
     expect(permitsAdvertising("US")).toBe(true);
   });
 
-  it("sends no automatic Lead and deduplicates available-group clicks", async () => {
+  it("sends Lead with trackSingle to the correct Pixel, ignores double-clicks, no permanent block", async () => {
+    vi.useFakeTimers();
     const fbq = vi.fn();
     Object.assign(window, { fbq, __radarAdvertisingAllowed: true });
-    const { trackLeadOnce, LEAD_KEY, WHATSAPP_GROUP_URL } = await import("@/lib/meta-lead");
+    const { trackLeadOnce, WHATSAPP_GROUP_URL } = await import("@/lib/meta-lead");
     expect(fbq).not.toHaveBeenCalled();
-    expect(LEAD_KEY).toContain("1104208202495234");
     expect(WHATSAPP_GROUP_URL).toBe("https://chat.whatsapp.com/GcNVB35EeMFGNIf8VlYAQV");
-    await Promise.all([trackLeadOnce(), trackLeadOnce(), trackLeadOnce()]);
+    trackLeadOnce(); trackLeadOnce(); trackLeadOnce();
     expect(fbq).toHaveBeenCalledTimes(1);
-    expect(fbq.mock.calls[0]?.slice(0, 2)).toEqual(["track", "Lead"]);
-    await trackLeadOnce();
-    expect(fbq).toHaveBeenCalledTimes(1);
+    expect(fbq.mock.calls[0]?.slice(0, 3)).toEqual(["trackSingle", "1104208202495234", "Lead"]);
+    vi.advanceTimersByTime(2000);
+    trackLeadOnce();
+    expect(fbq).toHaveBeenCalledTimes(2);
+    expect(localStorage.length).toBe(0);
+    vi.useRealTimers();
   });
 
-  it("does not queue or replay a click blocked by regional permission", async () => {
+  it("does not send or replay a click blocked by regional permission", async () => {
     const fbq = vi.fn();
     Object.assign(window, { fbq, __radarAdvertisingAllowed: false });
-    const { trackLeadOnce, LEAD_KEY } = await import("@/lib/meta-lead");
-    await trackLeadOnce();
-    expect(fbq).not.toHaveBeenCalled();
-    expect(localStorage.getItem(LEAD_KEY)).toBeNull();
+    const { trackLeadOnce } = await import("@/lib/meta-lead");
+    trackLeadOnce();
     Object.assign(window, { __radarAdvertisingAllowed: true });
     expect(fbq).not.toHaveBeenCalled();
   });
