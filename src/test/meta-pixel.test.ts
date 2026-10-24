@@ -29,7 +29,7 @@ describe("Radar Pixel rules", () => {
     expect(WHATSAPP_GROUP_URL).toBe("https://chat.whatsapp.com/GcNVB35EeMFGNIf8VlYAQV");
     await Promise.all([trackLeadOnce(), trackLeadOnce(), trackLeadOnce()]);
     expect(fbq).toHaveBeenCalledTimes(1);
-    expect(fbq.mock.calls[0].slice(0, 2)).toEqual(["track", "Lead"]);
+    expect(fbq.mock.calls[0]?.slice(0, 2)).toEqual(["track", "Lead"]);
     await trackLeadOnce();
     expect(fbq).toHaveBeenCalledTimes(1);
   });
