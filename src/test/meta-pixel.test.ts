@@ -10,14 +10,15 @@ describe("Radar Pixel rules", () => {
     expect(PIXEL_SNIPPET).not.toContain("1576330420624489");
   });
 
-  it("blocks consent regions, unresolved locations and opt-outs without a banner", () => {
+  it("Brazil measures only after Aceitar; silence or Recusar never loads the Pixel", () => {
     expect(permitsAdvertising("BR")).toBe(false);
-    expect(permitsAdvertising("DE")).toBe(false);
+    expect(permitsAdvertising("BR", "denied")).toBe(false);
+    expect(permitsAdvertising("BR", "granted")).toBe(true);
     expect(permitsAdvertising("XX")).toBe(false);
-    expect(permitsAdvertising("T1")).toBe(false);
     expect(permitsAdvertising("")).toBe(false);
-    expect(permitsAdvertising("US", true)).toBe(false);
     expect(permitsAdvertising("US")).toBe(true);
+    expect(permitsAdvertising("US", "denied")).toBe(false);
+    expect(permitsAdvertising("BR", "granted", true)).toBe(false);
   });
 
   it("sends Lead with trackSingle to the correct Pixel, ignores double-clicks, no permanent block", async () => {
