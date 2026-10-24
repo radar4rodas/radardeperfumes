@@ -9,3 +9,5 @@
 - [x] Apply agreed no-banner regional blocking and disclose measurement in the linked privacy document.
 - [x] Test new Pixel, single PageView, deduplicated Lead and disabled group (six tests and browser checks passed).
 - [ ] Publish and verify Meta receipt — requires publication approval and Meta Events Manager access; browser checks observed no outgoing event beacons.
+- [x] Lead: trackSingle no Pixel 1104208202495234, sem bloqueio permanente
+- [ ] Medição no Brasil: aguardando decisão de consentimento do dono (sem aviso = bloqueado)
