@@ -133,12 +133,23 @@
 }
 
 :root {
-  --background: oklch(0.13 0.01 60);
+  --background: oklch(0.13 0.004 80);
   --foreground: oklch(0.97 0.01 80);
   --muted-foreground: oklch(0.86 0.02 80);
   --gold: oklch(0.8 0.12 75);
   --whatsapp: oklch(0.6 0.17 150);
   --whatsapp-deep: oklch(0.45 0.14 150);
+  --whatsapp-foreground: oklch(0.99 0.005 150);
+  --whatsapp-border: oklch(0.75 0.15 150 / 0.5);
+  --whatsapp-glow: oklch(0.6 0.17 150 / 0.3);
+  --whatsapp-glow-strong: oklch(0.6 0.17 150 / 0.45);
+  --whatsapp-halo: oklch(0.75 0.15 150 / 0.12);
+  --group-full: oklch(0.22 0.018 150);
+  --group-full-foreground: oklch(0.53 0.025 150);
+  --group-full-border: oklch(0.32 0.025 150);
+  --lux-light: oklch(0.3 0.035 75 / 0.35);
+  --gold-light: oklch(0.88 0.1 85);
+  --gold-deep: oklch(0.72 0.14 60);
 }
 
 @theme inline {
@@ -161,23 +172,52 @@
 
 .font-display { font-family: var(--font-display); font-weight: 600; }
 .lux-bg {
-  background: radial-gradient(ellipse at 10% 30%, oklch(0.45 0.09 65 / 0.55), transparent 55%), var(--background);
+  background: radial-gradient(ellipse at 50% 35%, var(--lux-light), transparent 60%), var(--background);
 }
 .text-gold-gradient {
-  background: linear-gradient(90deg, oklch(0.88 0.1 85), oklch(0.72 0.14 60));
+  background: linear-gradient(90deg, var(--gold-light), var(--gold-deep));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 .cta-whatsapp {
-  color: var(--foreground);
+  color: var(--whatsapp-foreground);
   background: linear-gradient(180deg, var(--whatsapp), var(--whatsapp-deep));
-  box-shadow: 0 0 0 1px oklch(0.75 0.15 150 / 0.5), 0 10px 40px oklch(0.6 0.17 150 / 0.45);
+  box-shadow: 0 0 0 1px var(--whatsapp-border), 0 10px 30px var(--whatsapp-glow);
   animation: cta-pulse 2s ease-in-out infinite;
   transition: transform 0.15s;
 }
 .cta-whatsapp:hover { transform: scale(1.02); }
 @keyframes cta-pulse {
-  0%, 100% { box-shadow: 0 0 0 1px oklch(0.75 0.15 150 / 0.5), 0 10px 30px oklch(0.6 0.17 150 / 0.35); }
-  50% { box-shadow: 0 0 0 6px oklch(0.75 0.15 150 / 0.15), 0 10px 50px oklch(0.6 0.17 150 / 0.6); }
+  0%, 100% { box-shadow: 0 0 0 1px var(--whatsapp-border), 0 10px 30px var(--whatsapp-glow); }
+  50% { box-shadow: 0 0 0 4px var(--whatsapp-halo), 0 10px 40px var(--whatsapp-glow-strong); }
+}
+
+.perfume-composition { width: calc(100% + 40px); }
+.perfume-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  mask-image: linear-gradient(to bottom, transparent, black 12%, black 78%, transparent 100%), linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-composite: intersect;
+}
+.group-actions { margin-top: 4px; }
+.group-badge {
+  z-index: 1;
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-size: 9px;
+  line-height: 1.2;
+  font-weight: 700;
+  white-space: nowrap;
+  border: 1px solid var(--whatsapp-border);
+}
+.group-badge-available { background: var(--whatsapp-deep); color: var(--whatsapp-foreground); }
+.group-badge-full { background: var(--group-full); color: var(--group-full-foreground); border-color: var(--group-full-border); }
+.cta-full { background: var(--group-full); color: var(--group-full-foreground); border: 1px solid var(--group-full-border); }
+@media (prefers-reduced-motion: reduce) {
+  .cta-whatsapp { animation: none; transition: none; }
+  .cta-whatsapp:hover { transform: none; }
 }
