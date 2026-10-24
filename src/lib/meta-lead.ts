@@ -1,5 +1,6 @@
-export const PIXEL_ID = "1576330420624489";
-export const LEAD_KEY = "meta_lead_1576330420624489_perfumes_vip_v1";
+import { advertisingPermittedNow } from "./meta-pixel";
+export { PIXEL_ID } from "./meta-pixel";
+export const LEAD_KEY = "meta_lead_1104208202495234_perfumes_vip_v1";
 export const WHATSAPP_GROUP_URL = "https://chat.whatsapp.com/GcNVB35EeMFGNIf8VlYAQV";
 
 type LeadRecord = { eventId: string; createdAt: string; dispatch: "queued" | "failed" };
@@ -47,7 +48,7 @@ function newId() {
 }
 
 function sendLeadOnce() {
-  if (readRecord()) return;
+  if (!advertisingPermittedNow() || readRecord()) return;
   const rec: LeadRecord = { eventId: newId(), createdAt: new Date().toISOString(), dispatch: "queued" };
   writeRecord(rec);
   try {
@@ -67,7 +68,7 @@ function sendLeadOnce() {
 
 /** Records the Lead at most once; never blocks or throws. */
 export async function trackLeadOnce(): Promise<void> {
-  if (clickLock) return;
+  if (!advertisingPermittedNow() || clickLock) return;
   clickLock = true;
   try {
     if (readRecord()) return;
