@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import bottles from "@/assets/bottles.jpg.asset.json";
 import { GroupButtons } from "@/components/group-buttons";
+import { useEffect } from "react";
+import { countMetric, watchMetaPageView } from "@/lib/metrics";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -17,6 +19,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  useEffect(() => { countMetric("page_view"); return watchMetaPageView(); }, []);
   return (
     <main className="lux-bg flex min-h-screen justify-center overflow-hidden px-5 py-9 text-foreground sm:py-12">
       <div className="flex w-full max-w-md flex-col items-center text-center">
