@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { GroupButtons } from "@/components/group-buttons";
 
 const trackLead = vi.hoisted(() => vi.fn());
+vi.mock("@/lib/metrics", () => ({ countMetric: vi.fn() }));
 vi.mock("@/lib/meta-lead", () => ({
   WHATSAPP_GROUP_URL: "https://chat.whatsapp.com/test-invite",
   trackLeadOnce: trackLead,
