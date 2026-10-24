@@ -1,7 +1,6 @@
 export const PIXEL_ID = "1576330420624489";
 export const LEAD_KEY = "meta_lead_1576330420624489_perfumes_vip_v1";
-// Pending: replace with the real WhatsApp group invite link.
-export const WHATSAPP_GROUP_URL = "WHATSAPP_GROUP_URL";
+export const WHATSAPP_GROUP_URL = "https://chat.whatsapp.com/GcNVB35EeMFGNIf8VlYAQV";
 
 type LeadRecord = { eventId: string; createdAt: string; dispatch: "queued" | "failed" };
 
