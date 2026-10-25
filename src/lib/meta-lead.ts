@@ -1,11 +1,11 @@
-import { PIXEL_ID, advertisingPermittedNow } from "./meta-pixel";
+import { PIXEL_ID } from "./meta-pixel";
 import { countMetric } from "./metrics";
 export { PIXEL_ID } from "./meta-pixel";
 export const WHATSAPP_GROUP_URL = "https://chat.whatsapp.com/GcNVB35EeMFGNIf8VlYAQV";
 
-// Short window only to ignore accidental double-clicks; nothing is stored permanently.
-const DOUBLE_CLICK_MS = 1500;
-let lastLeadAt = 0;
+// One Lead per browser for this Pixel and WhatsApp group, even after revisits.
+const LEAD_STORAGE_KEY = `radar:meta-lead:${PIXEL_ID}:perfumes-vip`;
+let sentThisSession = false;
 
 function newId() {
   try {
@@ -18,12 +18,18 @@ function newId() {
 /** Sends Lead synchronously on click (before the WhatsApp tab opens); never blocks or throws. */
 export function trackLeadOnce(): void {
   try {
-    if (!advertisingPermittedNow()) return;
-    const now = Date.now();
-    if (now - lastLeadAt < DOUBLE_CLICK_MS) return;
+    if (sentThisSession) return;
+    try {
+      if (window.localStorage.getItem(LEAD_STORAGE_KEY) === "sent") {
+        sentThisSession = true;
+        return;
+      }
+    } catch {
+      // Storage may be unavailable; still prevent repeats in this page session.
+    }
     const fbq = (window as unknown as { fbq?: (...a: unknown[]) => void }).fbq;
     if (typeof fbq !== "function") return;
-    lastLeadAt = now;
+    sentThisSession = true;
     fbq(
       "trackSingle",
       PIXEL_ID,
@@ -31,6 +37,7 @@ export function trackLeadOnce(): void {
       { content_name: "Grupo VIP - Perfumes Masculinos", content_category: "Perfumes" },
       { eventID: newId() },
     );
+    try { window.localStorage.setItem(LEAD_STORAGE_KEY, "sent"); } catch { /* storage unavailable */ }
     countMetric("meta_lead");
   } catch {
     /* tracking must never block access */
@@ -38,5 +45,5 @@ export function trackLeadOnce(): void {
 }
 
 export function __resetLeadForTests() {
-  lastLeadAt = 0;
+  sentThisSession = false;
 }
