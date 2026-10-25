@@ -221,14 +221,3 @@
   .cta-whatsapp { animation: none; transition: none; }
   .cta-whatsapp:hover { transform: none; }
 }
-.consent-bar {
-  position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-  padding: 6px 12px calc(6px + env(safe-area-inset-bottom));
-  background: oklch(0.16 0.005 260 / 0.97);
-  border-top: 1px solid oklch(1 0 0 / 0.08);
-}
-.consent-bar p { max-width: 22rem; text-align: left; }
-.consent-btn { border-radius: 6px; padding: 5px 12px; font-size: 11px; font-weight: 600; line-height: 1.2; }
-.consent-accept { background: var(--whatsapp-deep); color: var(--whatsapp-foreground); }
-.consent-reject { background: transparent; color: var(--muted-foreground); border: 1px solid oklch(1 0 0 / 0.18); }
